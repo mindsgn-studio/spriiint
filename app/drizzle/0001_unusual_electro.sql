@@ -1,0 +1,1 @@
+ALTER TABLE `workouts` ADD `created_at` integer;
