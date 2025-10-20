@@ -9,6 +9,7 @@ export const workouts = sqliteTable('workouts', {
   started_at: text().default(sql`(CURRENT_TIMESTAMP)`),
   ended_at: text().default(sql`(CURRENT_TIMESTAMP)`),
   created_at: text().default(sql`(CURRENT_TIMESTAMP)`),
+  synced_at: text().default(sql`(CURRENT_TIMESTAMP)`),
 });
 
 export type Task = typeof workouts.$inferSelect;

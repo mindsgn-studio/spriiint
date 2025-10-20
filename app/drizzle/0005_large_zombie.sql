@@ -1,0 +1,1 @@
+ALTER TABLE `workouts` ADD `synced_at` text DEFAULT (CURRENT_TIMESTAMP);
