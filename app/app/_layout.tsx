@@ -13,7 +13,7 @@ const db = drizzle(expoDb);
 
 export default function RootLayout() {
   const { success, error } = useMigrations(db, migrations);
- 
+  
   return (
     <Suspense fallback={<ActivityIndicator size="large" />}>
       <SQLiteProvider

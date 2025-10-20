@@ -2,15 +2,18 @@ import { StyleSheet } from 'react-native';
 import { View } from 'react-native';
 import { TouchableOpacity, Text } from 'react-native';
 import { useSQLiteContext } from 'expo-sqlite';
-import { drizzle, useLiveQuery } from 'drizzle-orm/expo-sqlite';
+import { drizzle } from 'drizzle-orm/expo-sqlite';
 import * as schema from '@/db/schema';
+import * as Haptics from 'expo-haptics';
 
 export default function WorkoutScreen() {
   const db = useSQLiteContext();
   const drizzleDb = drizzle(db, {schema});
 
   const saveWorkout = async () => {
-    console.log("saving workout")
+    Haptics.notificationAsync(
+      Haptics.NotificationFeedbackType.Success
+    )
     
     try {
      const data =  await drizzleDb.insert(schema.workouts).values(
