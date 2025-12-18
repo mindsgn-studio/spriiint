@@ -1,15 +1,16 @@
-import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
-import { sql } from "drizzle-orm";
+import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const workouts = sqliteTable('workouts', {
-  id: integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
-  type: text().notNull(),
-  repetitions: integer().notNull(),
-  sets: integer().notNull(),
-  started_at: text().default(sql`(CURRENT_TIMESTAMP)`),
-  ended_at: text().default(sql`(CURRENT_TIMESTAMP)`),
-  created_at: text().default(sql`(CURRENT_TIMESTAMP)`),
-  synced_at: text().default(sql`(CURRENT_TIMESTAMP)`),
+export const completions = sqliteTable("completions", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  date: text("date").notNull().unique(),
+  pushups: integer("pushups").notNull(),
+  variation: text("variation").notNull(),
+  completedAt: text("completed_at").notNull(),
 });
 
-export type Task = typeof workouts.$inferSelect;
+export const workouts = sqliteTable("workout", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+});
+
+export type Completions = typeof completions.$inferSelect;
+export type Workouts = typeof workouts.$inferSelect;

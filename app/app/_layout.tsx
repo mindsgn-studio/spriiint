@@ -1,19 +1,20 @@
-import { Stack } from 'expo-router';
-import 'react-native-reanimated';
-import { Suspense } from 'react';
-import { ActivityIndicator } from 'react-native';
-import { SQLiteProvider, openDatabaseSync } from 'expo-sqlite';
-import { drizzle } from 'drizzle-orm/expo-sqlite';
-import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
-import migrations from '@/drizzle/migrations';
+import { Stack } from "expo-router";
+import "react-native-reanimated";
+import { SQLiteProvider } from "expo-sqlite";
+import { Suspense } from "react";
+import { ActivityIndicator } from "react-native";
+import { db, DATABASE_NAME } from "@/db/client";
+import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
+import migrations from "@/drizzle/migrations";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-export const DATABASE_NAME = 'workouts.db';
-const expoDb = openDatabaseSync(DATABASE_NAME);
-const db = drizzle(expoDb);
+export const unstable_settings = {
+  anchor: "index",
+};
 
 export default function RootLayout() {
-  const { success, error } = useMigrations(db, migrations);
-  
+  const { success, error: migrationError } = useMigrations(db, migrations);
+
   return (
     <Suspense fallback={<ActivityIndicator size="large" />}>
       <SQLiteProvider
@@ -21,11 +22,12 @@ export default function RootLayout() {
         options={{ enableChangeListener: true }}
         useSuspense
       >
-        <Stack>
-          <Stack.Screen name="index" options={{ title: 'Workouts', header: null }} />
-        </Stack>
+        <GestureHandlerRootView>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+          </Stack>
+        </GestureHandlerRootView>
       </SQLiteProvider>
     </Suspense>
   );
-}   
-
+}
