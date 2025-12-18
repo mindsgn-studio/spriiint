@@ -34,12 +34,12 @@
 
 We have a comprehensive guide to get you up and running in minutes.
 
-👉 **[Read the Onboarding Guide](app/ONBOARDING.md)**
+👉 **[Read the Onboarding Guide](docs/ONBOARDING.md)**
 
 ### Quick Command Reference
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/spriiint.git
+git clone git@github.com:mindsgn-studio/spriiint.git
 
 # Enter the app directory
 cd spriiint/app
@@ -55,9 +55,9 @@ npx expo start
 
 We welcome contributions from developers of all skill levels! Whether you're fixing a typo or building a major feature, we'd love your help.
 
-- **[Contributing Guidelines](CONTRIBUTING.md)**: Rules of the road, branching strategy, and how to open a PR.
-- **[Code Standards](app/CODE_STANDARDS.md)**: Style guides and best practices.
-- **[Task List](app/tasks.md)**: Find something to work on!
+- **[Contributing Guidelines](docs/CONTRIBUTING.md)**: Rules of the road, branching strategy, and how to open a PR.
+- **[Code Standards](docs/CODE_STANDARDS.md)**: Style guides and best practices.
+- **[Task List](docs/tasks.md)**: Find something to work on!
 
 ## 🗺 Roadmap
 
