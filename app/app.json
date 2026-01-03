@@ -2,7 +2,7 @@
   "expo": {
     "name": "BODY.",
     "slug": "body",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "mind",
@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": false,
-      "buildNumber": "3",
+      "buildNumber": "4",
       "bundleIdentifier": "mindsgn.studio.spriiint",
       "appleTeamId": "B3U8UM2966",
       "infoPlist": {
