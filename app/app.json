@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "MIND",
-    "slug": "MIND",
-    "version": "0.0.8",
+    "name": "BODY.",
+    "slug": "body",
+    "version": "0.0.3",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "mind",
@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": false,
-      "buildNumber": "40",
+      "buildNumber": "3",
       "bundleIdentifier": "mindsgn.studio.spriiint",
       "appleTeamId": "B3U8UM2966",
       "infoPlist": {

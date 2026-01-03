@@ -1,5 +1,9 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
+export const user = sqliteTable("user", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+});
+
 export const completions = sqliteTable("completions", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   date: text("date").notNull().unique(),
@@ -14,3 +18,4 @@ export const workouts = sqliteTable("workout", {
 
 export type Completions = typeof completions.$inferSelect;
 export type Workouts = typeof workouts.$inferSelect;
+export type User = typeof user.$inferSelect;
