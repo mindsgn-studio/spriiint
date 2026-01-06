@@ -7,6 +7,7 @@ import { db, DATABASE_NAME } from "@/db/client";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import migrations from "@/drizzle/migrations";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useKeepAwake } from "expo-keep-awake";
 
 export const unstable_settings = {
   anchor: "index",
@@ -14,6 +15,7 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const { success, error: migrationError } = useMigrations(db, migrations);
+  useKeepAwake();
 
   return (
     <Suspense fallback={<ActivityIndicator size="large" />}>
