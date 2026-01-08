@@ -27,6 +27,7 @@ export default function RootLayout() {
         <GestureHandlerRootView>
           <Stack>
             <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="permission" options={{ headerShown: false }} />
             <Stack.Screen name="workout" options={{ headerShown: false }} />
           </Stack>
         </GestureHandlerRootView>

@@ -14,7 +14,7 @@ export function useHealthKit() {
   const saveWorkout = async (
     startDate: Date,
     endDate: Date,
-    calories: number
+    calories: number,
   ) => {
     // If we don't have permission, we can't save.
     // However, sometimes status might be 'notDetermined' or similar.
