@@ -32,6 +32,14 @@
     "plugins": [
       "expo-router",
       [
+        "@kingstinct/react-native-healthkit",
+        {
+          "NSHealthShareUsageDescription": "Your own custom usage description",
+          "NSHealthUpdateUsageDescription": "Your own custom usage description",
+          "background": true
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",

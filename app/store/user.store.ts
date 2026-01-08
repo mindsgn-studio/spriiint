@@ -1,30 +1,36 @@
 import { create } from "zustand";
 import { db } from "../db/client";
-import { completions } from "@/db/schema";
+import { completions, user, workout } from "@/db/schema";
+
 import { format } from "date-fns";
 import { getWorkout, WorkoutDay } from "@/constants/workouts";
+import {
+  saveWorkout,
+  HKWorkoutActivityType,
+} from "@kingstinct/react-native-healthkit";
 
 interface StoreState {
   dayIndex: number;
   currentWorkout: WorkoutDay | null;
   todayCompleted: boolean;
-
-  // Progress Tracking
   currentExerciseIndex: number;
   currentSetIndex: number;
   isResting: boolean;
-
   loadTodayStatus: () => Promise<void>;
   completeSet: () => void;
   skipRest: () => void;
   completeToday: () => Promise<void>;
+  saveWorkout: () => Promise<void>;
+  startTime: Date;
+  endTime: Date;
 }
 
 export const useStore = create<StoreState>((set, get) => ({
   dayIndex: 1,
   currentWorkout: null,
   todayCompleted: false,
-
+  startTime: new Date(),
+  endTime: new Date(),
   currentExerciseIndex: 0,
   currentSetIndex: 0,
   isResting: false,
@@ -38,8 +44,6 @@ export const useStore = create<StoreState>((set, get) => ({
     const todayEntry = allCompletions.find((c) => c.date === today);
     const hasCompletedToday = !!todayEntry;
 
-    // If we have completed today, show the current day (count).
-    // If we haven't, show the next day (count + 1).
     const currentDayIndex = hasCompletedToday
       ? completedCount
       : completedCount + 1;
@@ -50,7 +54,6 @@ export const useStore = create<StoreState>((set, get) => ({
       todayCompleted: hasCompletedToday,
       dayIndex: currentDayIndex,
       currentWorkout: workout,
-      // Reset progress
       currentExerciseIndex: 0,
       currentSetIndex: 0,
       isResting: false,
@@ -138,6 +141,31 @@ export const useStore = create<StoreState>((set, get) => ({
       })
       .run();
 
+    if (!isRest) {
+      try {
+        const endDate = new Date();
+        const startDate = new Date(endDate.getTime() - 15 * 60 * 1000); // 15 min estimate
+
+        await saveWorkout({
+          activityType: HKWorkoutActivityType.traditionalStrengthTraining,
+          startDate,
+          endDate,
+          energyBurned: pushups * 0.5,
+          energyBurnedUnit: "kcal",
+        });
+      } catch (error) {
+        console.log("HealthKit sync failed:", error);
+      }
+    }
+
     set({ todayCompleted: true, isResting: false });
+  },
+
+  saveWorkout: async () => {
+    const { currentWorkout, currentSetIndex } = get();
+
+    const completetion = await db.select().from(completions).execute();
+    const users = await db.select().from(user).execute();
+    const workouts = await db.select().from(workout).execute();
   },
 }));
