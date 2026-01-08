@@ -4,9 +4,11 @@ import { useEffect } from "react";
 
 export default function IndexScreen() {
   const router = useRouter();
+
   useEffect(() => {
     router.replace("/workout");
   }, []);
+
   return <View style={styles.container}></View>;
 }
 

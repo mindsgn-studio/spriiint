@@ -122,12 +122,12 @@ const generateWorkoutForDay = (day: number): WorkoutDay => {
 
     exercises = [
       {
-        name: `${pushupName} ${intensityLabel}`,
+        name: `${pushupName}`, //`${pushupName} ${intensityLabel}`,
         total_reps: 100,
         structure,
       },
       {
-        name: `${squatName} ${intensityLabel}`,
+        name: `${squatName}`,
         total_reps: 100,
         structure,
       },

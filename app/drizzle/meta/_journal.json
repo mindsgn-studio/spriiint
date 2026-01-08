@@ -15,6 +15,13 @@
       "when": 1767474038493,
       "tag": "0001_tense_donald_blake",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1767869693557,
+      "tag": "0002_heavy_blur",
+      "breakpoints": true
     }
   ]
 }
