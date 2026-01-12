@@ -23,6 +23,7 @@ export default function WorkoutScreen() {
     // Actions
     loadTodayStatus,
     completeSet,
+    saveWorkout,
     skipRest,
   } = useStore();
 
@@ -64,7 +65,8 @@ export default function WorkoutScreen() {
   const SWIPE_THRESHOLD = 250;
 
   const handleCompleteSwipe = () => {
-    completeSet();
+    saveWorkout();
+    //completeSet();
     // Reset the slider immediately so it's ready for the next set (or reset when component re-renders)
     translateX.value = 0;
   };
@@ -101,8 +103,6 @@ export default function WorkoutScreen() {
   }
 
   const isRestDay = currentWorkout.status === "rest";
-
-  // --- Render Helpers ---
 
   const renderCompleted = () => (
     <View style={styles.centerContent}>
